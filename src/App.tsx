@@ -1,13 +1,25 @@
 import { useState, useEffect } from 'react';
 import { CallbackModal, LegalModal } from './components/Modals';
+import { LogoFull, LogoFullWhite } from './components/Logo';
 
 // ==================== КОНСТАНТЫ ====================
 
 const PHONE = '+79183388845';
 const PHONE_DISPLAY = '+7 (918) 338-88-45';
+const PHONE_2 = '+79180634414';
+const PHONE_2_DISPLAY = '+7 (918) 063-44-14';
+const EMAIL = 'S9180634414@yandex.ru';
 const TELEGRAM_URL = 'https://t.me/stepan222z';
 const TELEGRAM_HANDLE = '@stepan222z';
 const MAX_URL = 'https://max.ru/u/f9LHodD0cOIOBZhC8PSQYReyJLWlFg-CPF8QaSIRMRh6fj6_Qez_NrpFnjg';
+
+// Юридическая информация
+const COMPANY_FULL = 'Индивидуальный предприниматель Панова Людмила Васильевна';
+const COMPANY_SHORT = 'ИП Панова Л.В.';
+const COMPANY_INN = '234901695487';
+const COMPANY_OGRNIP = '321237500356566';
+const COMPANY_ADDRESS = '353560, Краснодарский край, г. Славянск-на-Кубани, ул. Казачья, дом 73';
+const COMPANY_DIRECTOR = 'Панова Людмила Васильевна';
 
 // ==================== HEADER ====================
 
@@ -35,14 +47,8 @@ function Header({ onCallback }: { onCallback: () => void }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-lg bg-blue-900 flex items-center justify-center">
-              <span className="text-white font-bold text-sm">H₂O</span>
-            </div>
-            <div className="hidden sm:block">
-              <div className="font-bold text-slate-900 leading-tight">H2O-Про</div>
-              <div className="text-[10px] text-slate-500 leading-tight tracking-wide uppercase">Бурение с интеллектом</div>
-            </div>
+          <a href="#" className="flex items-center">
+            <LogoFull />
           </a>
 
           {/* Desktop nav */}
@@ -688,6 +694,22 @@ function ContactSection({ onCallback }: { onCallback: () => void }) {
                 </div>
               </a>
 
+              <a href={`tel:${PHONE_2}`} className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 hover:bg-blue-50 transition-colors group">
+                <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center text-xl group-hover:bg-blue-200 transition-colors">📞</div>
+                <div>
+                  <div className="text-xs text-slate-500 uppercase tracking-wider">Телефон</div>
+                  <div className="font-bold text-slate-900 text-lg">{PHONE_2_DISPLAY}</div>
+                </div>
+              </a>
+
+              <a href={`mailto:${EMAIL}`} className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 hover:bg-emerald-50 transition-colors group">
+                <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center text-xl group-hover:bg-emerald-200 transition-colors">📧</div>
+                <div>
+                  <div className="text-xs text-slate-500 uppercase tracking-wider">Email</div>
+                  <div className="font-bold text-slate-900">{EMAIL}</div>
+                </div>
+              </a>
+
               <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 hover:bg-sky-50 transition-colors group">
                 <div className="w-12 h-12 rounded-xl bg-sky-100 flex items-center justify-center text-xl group-hover:bg-sky-200 transition-colors">✈️</div>
                 <div>
@@ -705,12 +727,24 @@ function ContactSection({ onCallback }: { onCallback: () => void }) {
               </a>
             </div>
 
-            <div className="p-4 rounded-xl bg-amber-50 border border-amber-100">
-              <div className="flex items-start gap-3">
-                <span className="text-xl">📍</span>
-                <div>
-                  <div className="font-semibold text-slate-900 text-sm">Регион работы</div>
-                  <div className="text-slate-600 text-sm">Краснодарский край. Выезжаем на объекты без ограничений по расстоянию.</div>
+            <div className="space-y-3">
+              <div className="p-4 rounded-xl bg-amber-50 border border-amber-100">
+                <div className="flex items-start gap-3">
+                  <span className="text-xl">📍</span>
+                  <div>
+                    <div className="font-semibold text-slate-900 text-sm">Адрес</div>
+                    <div className="text-slate-600 text-sm">{COMPANY_ADDRESS}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-xl bg-blue-50 border border-blue-100">
+                <div className="flex items-start gap-3">
+                  <span className="text-xl">🗺️</span>
+                  <div>
+                    <div className="font-semibold text-slate-900 text-sm">Регион работы</div>
+                    <div className="text-slate-600 text-sm">Краснодарский край. Выезжаем на объекты без ограничений по расстоянию.</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -764,16 +798,10 @@ function Footer({ onPrivacy, onConsent }: { onPrivacy: () => void; onConsent: ()
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-9 h-9 rounded-lg bg-blue-700 flex items-center justify-center">
-                <span className="text-white font-bold text-xs">H₂O</span>
-              </div>
-              <div>
-                <div className="font-bold leading-tight">H2O-Про</div>
-                <div className="text-[10px] text-slate-400 leading-tight uppercase tracking-wider">Бурение с интеллектом</div>
-              </div>
+            <div className="mb-4">
+              <LogoFullWhite />
             </div>
-            <p className="text-sm text-slate-400 leading-relaxed">Бурение скважин на воду и производство фильтров в Краснодарском крае.</p>
+            <p className="text-sm text-slate-400 leading-relaxed">{COMPANY_SHORT}<br/>Бурение скважин на воду и производство фильтров в Краснодарском крае.</p>
           </div>
 
           {/* Services */}
@@ -803,7 +831,9 @@ function Footer({ onPrivacy, onConsent }: { onPrivacy: () => void; onConsent: ()
             <h4 className="font-semibold text-sm mb-4">Контакты</h4>
             <div className="space-y-2 text-sm text-slate-400">
               <a href={`tel:${PHONE}`} className="block hover:text-white transition-colors font-medium">{PHONE_DISPLAY}</a>
-              <div>Краснодарский край</div>
+              <a href={`tel:${PHONE_2}`} className="block hover:text-white transition-colors font-medium">{PHONE_2_DISPLAY}</a>
+              <a href={`mailto:${EMAIL}`} className="block hover:text-white transition-colors">{EMAIL}</a>
+              <div>г. Славянск-на-Кубани</div>
               <div className="flex gap-2 mt-3">
                 <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors text-xs">TG</a>
                 <a href={MAX_URL} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors text-xs">MX</a>
@@ -814,7 +844,10 @@ function Footer({ onPrivacy, onConsent }: { onPrivacy: () => void; onConsent: ()
 
         {/* Bottom */}
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-slate-500">© 2021–2026 H2O-Про. ИП. Все права защищены.</p>
+          <div>
+            <p className="text-xs text-slate-500">© 2021–2026 {COMPANY_SHORT} Все права защищены.</p>
+            <p className="text-xs text-slate-600 mt-1">ИНН: {COMPANY_INN} · ОГРНИП: {COMPANY_OGRNIP}</p>
+          </div>
           <div className="flex gap-4 text-xs text-slate-500">
             <button onClick={onPrivacy} className="hover:text-white transition-colors">Политика конфиденциальности</button>
             <button onClick={onConsent} className="hover:text-white transition-colors">Согласие на обработку ПД</button>
