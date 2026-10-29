@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { CallbackModal, LegalModal } from './components/Modals';
 import { LogoFull, LogoFullWhite } from './components/Logo';
-import { IMAGES } from './constants/images';
+import { IMAGES, VIDEOS } from './constants/images';
 
 // ==================== КОНСТАНТЫ ====================
 
@@ -49,7 +49,7 @@ function Header({ onCallback }: { onCallback: () => void }) {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center flex-shrink-0">
-            <LogoFull />
+            <img src={IMAGES.logoCompany} alt="H2O-Про" className="h-12 md:h-14 w-auto" />
           </a>
 
           {/* Desktop nav */}
@@ -67,15 +67,11 @@ function Header({ onCallback }: { onCallback: () => void }) {
               {PHONE_DISPLAY}
             </a>
             <div className="flex gap-2">
-              <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-sky-500 hover:bg-sky-600 flex items-center justify-center transition-colors" aria-label="Telegram">
-                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                </svg>
+              <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-sky-500 hover:bg-sky-600 flex items-center justify-center transition-colors overflow-hidden" aria-label="Telegram">
+                <img src={IMAGES.logoTelegram} alt="Telegram" className="w-6 h-6 object-contain" />
               </a>
-              <a href={MAX_URL} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-violet-600 hover:bg-violet-700 flex items-center justify-center transition-colors" aria-label="MAX">
-                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-9l4 3-4 3V9z"/>
-                </svg>
+              <a href={MAX_URL} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-violet-600 hover:bg-violet-700 flex items-center justify-center transition-colors overflow-hidden" aria-label="MAX">
+                <img src={IMAGES.logoMax} alt="MAX" className="w-6 h-6 object-contain" />
               </a>
             </div>
             <button
@@ -181,10 +177,10 @@ function Hero({ onDrilling, onSurvey }: { onDrilling: () => void; onSurvey: () =
 
           {/* Right: visual */}
           <div className="relative">
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden relative shadow-2xl">
+            <div className="aspect-[9/16] md:aspect-[4/3] rounded-2xl overflow-hidden relative shadow-2xl max-h-[500px] mx-auto">
               <img 
-                src={IMAGES.largeRig}
-                alt="Буровая установка в работе" 
+                src={IMAGES.bigRigAtWork}
+                alt="Большая буровая установка в работе на участке заказчика" 
                 className="w-full h-full object-cover"
               />
             </div>
@@ -368,9 +364,9 @@ function FiltersBlock({ onFilter }: { onFilter: () => void }) {
 
             {/* Filter gallery */}
             <div className="grid grid-cols-3 gap-2 mb-8">
-              <img src={IMAGES.filterSteel2} alt="Стальной фильтр" className="aspect-square object-cover rounded-lg" />
-              <img src={IMAGES.filterSteel3} alt="Обсадной фильтр" className="aspect-square object-cover rounded-lg" />
-              <img src={IMAGES.filterSteel1} alt="Фильтр для скважины" className="aspect-square object-cover rounded-lg" />
+              <img src={IMAGES.filterSteelBlank} alt="Стальная заготовка для фильтра" className="aspect-square object-cover rounded-lg" />
+              <img src={IMAGES.filterSteelCloseup} alt="Обсадной стальной фильтр крупным планом" className="aspect-square object-cover rounded-lg" />
+              <img src={IMAGES.filterSteelTop} alt="Обсадной фильтр нарезанный общий вид" className="aspect-square object-cover rounded-lg" />
             </div>
 
             <button
@@ -385,8 +381,8 @@ function FiltersBlock({ onFilter }: { onFilter: () => void }) {
           <div className="relative">
             <div className="aspect-square rounded-2xl overflow-hidden relative shadow-2xl">
               <img 
-                src={IMAGES.filterSteel1}
-                alt="Стальной обсадной фильтр" 
+                src={IMAGES.filterSteelCloseup}
+                alt="Обсадной стальной фильтр крупным планом" 
                 className="w-full h-full object-cover"
               />
             </div>
@@ -426,7 +422,7 @@ function Process() {
           <p className="text-lg text-slate-600">От первого звонка до воды из крана — прозрачный процесс с документами на каждом этапе</p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {steps.map((step, i) => (
             <div key={i} className="relative p-6 rounded-xl bg-slate-50 border border-slate-100">
               <div className="text-4xl font-bold text-blue-100 mb-2">{step.num}</div>
@@ -434,6 +430,14 @@ function Process() {
               <p className="text-sm text-slate-600 leading-relaxed">{step.text}</p>
             </div>
           ))}
+        </div>
+
+        {/* Photos from work */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <img src={IMAGES.smallRigProcess} alt="Малая буровая в процессе работы" className="aspect-square object-cover rounded-xl" />
+          <img src={IMAGES.smallRigAtClient} alt="Бурение на участке клиента" className="aspect-square object-cover rounded-xl" />
+          <img src={IMAGES.manipulatorKamazBack} alt="Манипулятор КАМАЗ в работе" className="aspect-square object-cover rounded-xl" />
+          <img src={IMAGES.manipulatorGazFrontLeft} alt="Манипулятор ГАЗ 3308" className="aspect-square object-cover rounded-xl" />
         </div>
       </div>
     </section>
@@ -458,10 +462,10 @@ function Equipment() {
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           {/* Big rig */}
           <div className="bg-white rounded-2xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow">
-            <div className="aspect-[16/10] relative overflow-hidden">
+            <div className="aspect-[9/16] md:aspect-video relative overflow-hidden">
               <img 
-                src={IMAGES.largeRig2}
-                alt="Большая буровая установка УРБ-2,5" 
+                src={IMAGES.bigRigAtWork}
+                alt="Большая буровая установка в работе на участке заказчика" 
                 className="w-full h-full object-cover"
               />
             </div>
@@ -498,10 +502,10 @@ function Equipment() {
 
           {/* Compact rig */}
           <div className="bg-white rounded-2xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow">
-            <div className="aspect-[16/10] relative overflow-hidden">
+            <div className="aspect-square relative overflow-hidden">
               <img 
-                src={IMAGES.trackedRig}
-                alt="Малогабаритная буровая установка на гусеничном ходу" 
+                src={IMAGES.smallRigAtClient}
+                alt="Малогабаритная буровая установка на гусеничном ходу в работе на участке клиента" 
                 className="w-full h-full object-cover"
               />
             </div>
@@ -533,16 +537,96 @@ function Equipment() {
           </div>
         </div>
 
+        {/* Manipulator gallery */}
+        <div className="mt-8">
+          <h3 className="text-xl font-bold text-slate-900 mb-4">Манипуляторы в работе</h3>
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="bg-white rounded-xl overflow-hidden border border-slate-100">
+              <div className="aspect-video relative overflow-hidden">
+                <img src={IMAGES.manipulatorKamazFront} alt="Манипулятор КАМАЗ 43118 вид спереди" className="w-full h-full object-cover" />
+              </div>
+              <div className="p-3">
+                <p className="text-sm font-medium text-slate-900">КАМАЗ 43118 — вид спереди</p>
+              </div>
+            </div>
+            <div className="bg-white rounded-xl overflow-hidden border border-slate-100">
+              <div className="aspect-video relative overflow-hidden">
+                <img src={IMAGES.manipulatorKamazBack} alt="Манипулятор КАМАЗ 43118 в работе" className="w-full h-full object-cover" />
+              </div>
+              <div className="p-3">
+                <p className="text-sm font-medium text-slate-900">КАМАЗ 43118 — поднимает трубу</p>
+              </div>
+            </div>
+            <div className="bg-white rounded-xl overflow-hidden border border-slate-100">
+              <div className="aspect-video relative overflow-hidden">
+                <img src={IMAGES.manipulatorKamazBackRight} alt="Манипулятор КАМАЗ 43118 загружает трубу" className="w-full h-full object-cover" />
+              </div>
+              <div className="p-3">
+                <p className="text-sm font-medium text-slate-900">КАМАЗ 43118 — загрузка в кузов</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Videos */}
+        <div className="mt-8">
+          <h3 className="text-xl font-bold text-slate-900 mb-4">Видео с объектов</h3>
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="bg-white rounded-xl overflow-hidden border border-slate-100">
+              <div className="aspect-[9/16] relative">
+                <iframe 
+                  src={VIDEOS.bigRigVideo}
+                  className="w-full h-full"
+                  allow="autoplay"
+                  title="Видео работы большой буровой установки"
+                ></iframe>
+              </div>
+              <div className="p-3">
+                <p className="text-sm font-medium text-slate-900">Работа большой буровой</p>
+                <p className="text-xs text-slate-500">Глубина до 280 м, ∅ 394→190 мм</p>
+              </div>
+            </div>
+            <div className="bg-white rounded-xl overflow-hidden border border-slate-100">
+              <div className="aspect-[9/16] relative">
+                <iframe 
+                  src={VIDEOS.smallRigVideo}
+                  className="w-full h-full"
+                  allow="autoplay"
+                  title="Видео работы малой гусеничной буровой"
+                ></iframe>
+              </div>
+              <div className="p-3">
+                <p className="text-sm font-medium text-slate-900">Малая буровая на участке</p>
+                <p className="text-xs text-slate-500">Гусеничная, для обустроенных участков</p>
+              </div>
+            </div>
+            <div className="bg-white rounded-xl overflow-hidden border border-slate-100">
+              <div className="aspect-video relative">
+                <iframe 
+                  src={VIDEOS.filterProductionVideo}
+                  className="w-full h-full"
+                  allow="autoplay"
+                  title="Видео производства обсадного фильтра"
+                ></iframe>
+              </div>
+              <div className="p-3">
+                <p className="text-sm font-medium text-slate-900">Производство фильтров</p>
+                <p className="text-xs text-slate-500">Изготовление стального обсадного фильтра</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Additional vehicles */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
-            { name: 'Водовоз КамАЗ 43118', img: IMAGES.waterTruck },
-            { name: 'Манипулятор КамАЗ 43118', img: IMAGES.manipulatorKamaz },
-            { name: 'Манипулятор ГАЗ 3308', img: IMAGES.manipulatorGaz },
-            { name: 'Эвакуатор КамАЗ 4308', img: IMAGES.evacuator },
+            { name: 'Водовоз КамАЗ 43118', img: IMAGES.waterTruck, aspect: 'aspect-[4/3]' },
+            { name: 'Манипулятор КамАЗ 43118', img: IMAGES.manipulatorKamazFront, aspect: 'aspect-video' },
+            { name: 'Манипулятор ГАЗ 3308', img: IMAGES.manipulatorGazFrontRight, aspect: 'aspect-[4/3]' },
+            { name: 'Эвакуатор КамАЗ 4308', img: IMAGES.evacuator, aspect: 'aspect-[4/3]' },
           ].map((v, i) => (
             <div key={i} className="bg-white rounded-xl overflow-hidden border border-slate-100 hover:shadow-md transition-shadow">
-              <div className="aspect-[4/3] overflow-hidden">
+              <div className={`${v.aspect} overflow-hidden`}>
                 <img src={v.img} alt={v.name} className="w-full h-full object-cover" />
               </div>
               <div className="p-3">
@@ -723,7 +807,9 @@ function ContactSection({ onCallback }: { onCallback: () => void }) {
               </a>
 
               <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 hover:bg-sky-50 transition-colors group">
-                <div className="w-12 h-12 rounded-xl bg-sky-100 flex items-center justify-center text-xl group-hover:bg-sky-200 transition-colors">✈️</div>
+                <div className="w-12 h-12 rounded-xl bg-sky-100 flex items-center justify-center group-hover:bg-sky-200 transition-colors overflow-hidden">
+                  <img src={IMAGES.logoTelegram} alt="Telegram" className="w-7 h-7 object-contain" />
+                </div>
                 <div>
                   <div className="text-xs text-slate-500 uppercase tracking-wider">Telegram</div>
                   <div className="font-bold text-slate-900">{TELEGRAM_HANDLE}</div>
@@ -731,7 +817,9 @@ function ContactSection({ onCallback }: { onCallback: () => void }) {
               </a>
 
               <a href={MAX_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 hover:bg-violet-50 transition-colors group">
-                <div className="w-12 h-12 rounded-xl bg-violet-100 flex items-center justify-center text-xl group-hover:bg-violet-200 transition-colors">💬</div>
+                <div className="w-12 h-12 rounded-xl bg-violet-100 flex items-center justify-center group-hover:bg-violet-200 transition-colors overflow-hidden">
+                  <img src={IMAGES.logoMax} alt="MAX" className="w-7 h-7 object-contain" />
+                </div>
                 <div>
                   <div className="text-xs text-slate-500 uppercase tracking-wider">Мессенджер MAX</div>
                   <div className="font-bold text-slate-900">Написать в MAX</div>
@@ -811,7 +899,7 @@ function Footer({ onPrivacy, onConsent }: { onPrivacy: () => void; onConsent: ()
           {/* Brand */}
           <div>
             <div className="mb-4">
-              <LogoFullWhite />
+              <img src={IMAGES.logoCompany} alt="H2O-Про" className="h-10 w-auto brightness-0 invert opacity-90" />
             </div>
             <p className="text-sm text-slate-400 leading-relaxed">{COMPANY_SHORT}<br/>Бурение скважин на воду и производство фильтров в Краснодарском крае.</p>
           </div>
@@ -847,8 +935,12 @@ function Footer({ onPrivacy, onConsent }: { onPrivacy: () => void; onConsent: ()
               <a href={`mailto:${EMAIL}`} className="block hover:text-white transition-colors">{EMAIL}</a>
               <div>г. Славянск-на-Кубани</div>
               <div className="flex gap-2 mt-3">
-                <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors text-xs">TG</a>
-                <a href={MAX_URL} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors text-xs">MX</a>
+                <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors overflow-hidden" aria-label="Telegram">
+                  <img src={IMAGES.logoTelegram} alt="Telegram" className="w-5 h-5 object-contain" />
+                </a>
+                <a href={MAX_URL} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors overflow-hidden" aria-label="MAX">
+                  <img src={IMAGES.logoMax} alt="MAX" className="w-5 h-5 object-contain" />
+                </a>
               </div>
             </div>
           </div>
@@ -886,7 +978,7 @@ function FloatingButtons() {
             className="flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white px-4 py-3 rounded-full shadow-lg transition-all hover:scale-105"
           >
             <span className="text-sm font-medium">Telegram</span>
-            <span>✈️</span>
+            <img src={IMAGES.logoTelegram} alt="" className="w-5 h-5 object-contain" />
           </a>
           <a
             href={MAX_URL}
@@ -895,7 +987,7 @@ function FloatingButtons() {
             className="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-4 py-3 rounded-full shadow-lg transition-all hover:scale-105"
           >
             <span className="text-sm font-medium">MAX</span>
-            <span>💬</span>
+            <img src={IMAGES.logoMax} alt="" className="w-5 h-5 object-contain" />
           </a>
           <a
             href={`tel:${PHONE}`}
