@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { CallbackModal, LegalModal } from './components/Modals';
 import { LogoFull, LogoFullWhite } from './components/Logo';
+import { IMAGES } from './constants/images';
 
 // ==================== КОНСТАНТЫ ====================
 
@@ -47,24 +48,36 @@ function Header({ onCallback }: { onCallback: () => void }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center">
+          <a href="#" className="flex items-center flex-shrink-0">
             <LogoFull />
           </a>
 
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-6">
-            {links.map((l) => (
+            {links.slice(0, 3).map((l) => (
               <a key={l.href} href={l.href} className="text-sm text-slate-600 hover:text-blue-900 transition-colors font-medium">
                 {l.label}
               </a>
             ))}
           </nav>
 
-          {/* Phone + CTA */}
-          <div className="hidden md:flex items-center gap-4">
-            <a href={`tel:${PHONE}`} className="text-sm font-semibold text-slate-900 hover:text-blue-900 transition-colors">
+          {/* Phone + Messengers + CTA */}
+          <div className="hidden md:flex items-center gap-3">
+            <a href={`tel:${PHONE}`} className="text-lg font-bold text-blue-900 hover:text-blue-700 transition-colors">
               {PHONE_DISPLAY}
             </a>
+            <div className="flex gap-2">
+              <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-sky-500 hover:bg-sky-600 flex items-center justify-center transition-colors" aria-label="Telegram">
+                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                </svg>
+              </a>
+              <a href={MAX_URL} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-lg bg-violet-600 hover:bg-violet-700 flex items-center justify-center transition-colors" aria-label="MAX">
+                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-9l4 3-4 3V9z"/>
+                </svg>
+              </a>
+            </div>
             <button
               onClick={onCallback}
               className="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold rounded-lg transition-colors"
@@ -122,11 +135,6 @@ function Hero({ onDrilling, onSurvey }: { onDrilling: () => void; onSurvey: () =
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: text */}
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-100 text-blue-900 text-xs font-semibold mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-              Краснодарский край · с 2021 года
-            </div>
-
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-[1.1] mb-6">
               Бурение скважин<br />на воду
             </h1>
@@ -150,7 +158,7 @@ function Hero({ onDrilling, onSurvey }: { onDrilling: () => void; onSurvey: () =
                 onClick={onSurvey}
                 className="px-6 py-3.5 bg-white border border-slate-200 hover:border-blue-900 hover:text-blue-900 text-slate-700 font-semibold rounded-lg transition-colors text-center"
               >
-                Бесплатный выезд · Славянский р-он
+                Работаем по Краснодарскому краю
               </button>
             </div>
 
@@ -173,20 +181,18 @@ function Hero({ onDrilling, onSurvey }: { onDrilling: () => void; onSurvey: () =
 
           {/* Right: visual */}
           <div className="relative">
-            <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-blue-900 to-blue-700 overflow-hidden relative">
-              {/* Placeholder for real photo */}
-              <div className="absolute inset-0 pattern-stripes"></div>
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-8 text-center">
-                <div className="text-6xl mb-4">🔧</div>
-                <p className="text-lg font-medium opacity-80">Фото буровой установки</p>
-                <p className="text-sm opacity-50 mt-1">Будет заменено на реальное фото</p>
-              </div>
+            <div className="aspect-[4/3] rounded-2xl overflow-hidden relative shadow-2xl">
+              <img 
+                src={IMAGES.largeRig}
+                alt="Буровая установка в работе" 
+                className="w-full h-full object-cover"
+              />
             </div>
 
             {/* Floating card */}
             <div className="absolute -bottom-6 -left-4 sm:-left-6 bg-white rounded-xl shadow-xl p-4 border border-slate-100 max-w-[220px]">
               <div className="text-2xl font-bold text-blue-900">5 дней</div>
-              <div className="text-xs text-slate-500 mt-0.5">Скважина 60 м + обустройство</div>
+              <div className="text-xs text-slate-500 mt-0.5">и скважина 60 м готова</div>
             </div>
           </div>
         </div>
@@ -291,7 +297,7 @@ function Services({ onDrilling, onCallback }: { onDrilling: () => void; onCallba
             <ul className="space-y-2 text-sm text-slate-600 mb-6">
               <li className="flex items-start gap-2"><span className="text-amber-600 mt-0.5">•</span>Подбор и монтаж насосного оборудования</li>
               <li className="flex items-start gap-2"><span className="text-amber-600 mt-0.5">•</span>Прокладка водопровода от скважины</li>
-              <li className="flex items-start gap-2"><span className="text-amber-600 mt-0.5">•</span>Установка кессона, автоматики</li>
+              <li className="flex items-start gap-2"><span className="text-amber-600 mt-0.5">•</span>Установка защитного оборудования и автоматики</li>
               <li className="flex items-start gap-2"><span className="text-amber-600 mt-0.5">•</span>Можно с вашим насосом</li>
             </ul>
             <button onClick={onCallback} className="text-blue-900 font-semibold text-sm hover:text-amber-600 transition-colors">
@@ -360,6 +366,13 @@ function FiltersBlock({ onFilter }: { onFilter: () => void }) {
               </div>
             </div>
 
+            {/* Filter gallery */}
+            <div className="grid grid-cols-3 gap-2 mb-8">
+              <img src={IMAGES.filterSteel2} alt="Стальной фильтр" className="aspect-square object-cover rounded-lg" />
+              <img src={IMAGES.filterSteel3} alt="Обсадной фильтр" className="aspect-square object-cover rounded-lg" />
+              <img src={IMAGES.filterSteel1} alt="Фильтр для скважины" className="aspect-square object-cover rounded-lg" />
+            </div>
+
             <button
               onClick={onFilter}
               className="px-6 py-3.5 bg-amber-500 hover:bg-amber-600 text-white font-semibold rounded-lg transition-colors"
@@ -370,12 +383,12 @@ function FiltersBlock({ onFilter }: { onFilter: () => void }) {
 
           {/* Right: visual */}
           <div className="relative">
-            <div className="aspect-square rounded-2xl bg-white/5 border border-white/10 overflow-hidden relative">
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
-                <div className="text-6xl mb-4">🏭</div>
-                <p className="text-lg font-medium text-white/80">Фото производства и фильтров</p>
-                <p className="text-sm text-white/40 mt-1">Будет заменено на реальное фото</p>
-              </div>
+            <div className="aspect-square rounded-2xl overflow-hidden relative shadow-2xl">
+              <img 
+                src={IMAGES.filterSteel1}
+                alt="Стальной обсадной фильтр" 
+                className="w-full h-full object-cover"
+              />
             </div>
 
             <div className="absolute -top-4 -right-4 bg-amber-500 text-white rounded-xl p-4 shadow-xl">
@@ -445,12 +458,12 @@ function Equipment() {
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           {/* Big rig */}
           <div className="bg-white rounded-2xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow">
-            <div className="aspect-[16/10] bg-gradient-to-br from-slate-200 to-slate-300 relative">
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
-                <div className="text-5xl mb-3">🏗️</div>
-                <p className="text-slate-600 font-medium">Фото большой буровой</p>
-                <p className="text-xs text-slate-400 mt-1">большая установка процесс.jpg</p>
-              </div>
+            <div className="aspect-[16/10] relative overflow-hidden">
+              <img 
+                src={IMAGES.largeRig2}
+                alt="Большая буровая установка УРБ-2,5" 
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="p-6">
               <h3 className="text-xl font-bold text-slate-900 mb-2">Большая буровая установка</h3>
@@ -485,12 +498,12 @@ function Equipment() {
 
           {/* Compact rig */}
           <div className="bg-white rounded-2xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow">
-            <div className="aspect-[16/10] bg-gradient-to-br from-amber-100 to-amber-200 relative">
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
-                <div className="text-5xl mb-3">🚜</div>
-                <p className="text-slate-600 font-medium">Фото малогабаритной буровой</p>
-                <p className="text-xs text-slate-400 mt-1">гусеничная буровая.jpg</p>
-              </div>
+            <div className="aspect-[16/10] relative overflow-hidden">
+              <img 
+                src={IMAGES.trackedRig}
+                alt="Малогабаритная буровая установка на гусеничном ходу" 
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="p-6">
               <h3 className="text-xl font-bold text-slate-900 mb-2">Малогабаритная на гусеничном ходу</h3>
@@ -523,18 +536,17 @@ function Equipment() {
         {/* Additional vehicles */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
-            { name: 'Водовоз КамАЗ 43118', file: 'Водовоз камаз 43118.jpg', emoji: '🚛' },
-            { name: 'Манипулятор КамАЗ 43118', file: 'манипулятор камаз 43118.jpg', emoji: '🏗️' },
-            { name: 'Манипулятор ГАЗ 3308', file: 'манипулятор газ 3308.jpg', emoji: '🔧' },
-            { name: 'Эвакуатор КамАЗ 4308', file: 'Эвакуатор камаз 4308.jpg', emoji: '🚚' },
+            { name: 'Водовоз КамАЗ 43118', img: IMAGES.waterTruck },
+            { name: 'Манипулятор КамАЗ 43118', img: IMAGES.manipulatorKamaz },
+            { name: 'Манипулятор ГАЗ 3308', img: IMAGES.manipulatorGaz },
+            { name: 'Эвакуатор КамАЗ 4308', img: IMAGES.evacuator },
           ].map((v, i) => (
             <div key={i} className="bg-white rounded-xl overflow-hidden border border-slate-100 hover:shadow-md transition-shadow">
-              <div className="aspect-[4/3] bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
-                <span className="text-4xl">{v.emoji}</span>
+              <div className="aspect-[4/3] overflow-hidden">
+                <img src={v.img} alt={v.name} className="w-full h-full object-cover" />
               </div>
               <div className="p-3">
                 <p className="text-sm font-medium text-slate-900">{v.name}</p>
-                <p className="text-xs text-slate-400 mt-0.5">{v.file}</p>
               </div>
             </div>
           ))}
