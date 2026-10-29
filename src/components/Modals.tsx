@@ -74,10 +74,29 @@ export function CallbackModal({ open, onClose, type = 'callback' }: { open: bool
   const [submitted, setSubmitted] = useState(false);
   const config = formConfig[type];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!consent) return;
-    // Здесь будет отправка на бэкенд / в Telegram-бот
+
+    // Отправка на email через FormSubmit.co
+    // Замените YOUR_EMAIL@example.com на реальный email клиента
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('phone', phone);
+    formData.append('comment', comment);
+    formData.append('_subject', `Новая заявка с сайта H2O-Про: ${config.title}`);
+    formData.append('_template', 'table');
+    formData.append('_captcha', 'false');
+
+    try {
+      await fetch('https://formsubmit.co/ajax/YOUR_EMAIL@example.com', {
+        method: 'POST',
+        body: formData,
+      });
+    } catch (error) {
+      console.error('Ошибка отправки:', error);
+    }
+
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);

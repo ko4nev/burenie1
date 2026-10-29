@@ -449,6 +449,26 @@ function Equipment() {
             <div className="p-6">
               <h3 className="text-xl font-bold text-slate-900 mb-2">Большая буровая установка</h3>
               <p className="text-slate-600 text-sm mb-4">Для открытых участков и промышленного бурения. Глубокое бурение на металлических колоннах. Подходит для сложных геологических условий.</p>
+              
+              {/* Tech specs */}
+              <div className="bg-slate-50 rounded-lg p-4 mb-4">
+                <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Характеристики</div>
+                <div className="grid grid-cols-3 gap-3">
+                  <div>
+                    <div className="text-lg font-bold text-blue-900">280 м</div>
+                    <div className="text-xs text-slate-500">Глубина бурения</div>
+                  </div>
+                  <div>
+                    <div className="text-lg font-bold text-blue-900">394 мм</div>
+                    <div className="text-xs text-slate-500">Начальный ∅</div>
+                  </div>
+                  <div>
+                    <div className="text-lg font-bold text-blue-900">190 мм</div>
+                    <div className="text-xs text-slate-500">Конечный ∅</div>
+                  </div>
+                </div>
+              </div>
+
               <div className="flex flex-wrap gap-2">
                 <span className="px-2.5 py-1 bg-blue-50 text-blue-800 text-xs font-medium rounded-full">Глубокое бурение</span>
                 <span className="px-2.5 py-1 bg-blue-50 text-blue-800 text-xs font-medium rounded-full">Промышленные объекты</span>
@@ -469,6 +489,22 @@ function Equipment() {
             <div className="p-6">
               <h3 className="text-xl font-bold text-slate-900 mb-2">Малогабаритная на гусеничном ходу</h3>
               <p className="text-slate-600 text-sm mb-4">Компактная установка для участков с ограниченным подъездом. Не повредит ландшафт, заезд через стандартные ворота. Идеальна для обустроенных участков.</p>
+              
+              {/* Tech specs */}
+              <div className="bg-amber-50 rounded-lg p-4 mb-4">
+                <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Характеристики</div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <div className="text-lg font-bold text-amber-700">120 м</div>
+                    <div className="text-xs text-slate-500">Глубина бурения</div>
+                  </div>
+                  <div>
+                    <div className="text-lg font-bold text-amber-700">215 мм</div>
+                    <div className="text-xs text-slate-500">Диаметр долота</div>
+                  </div>
+                </div>
+              </div>
+
               <div className="flex flex-wrap gap-2">
                 <span className="px-2.5 py-1 bg-amber-50 text-amber-800 text-xs font-medium rounded-full">Ограниченный подъезд</span>
                 <span className="px-2.5 py-1 bg-amber-50 text-amber-800 text-xs font-medium rounded-full">Гусеничный ход</span>
