@@ -1,6 +1,14 @@
 import { useState, useEffect } from 'react';
 import { CallbackModal, LegalModal } from './components/Modals';
 
+// ==================== КОНСТАНТЫ ====================
+
+const PHONE = '+79183388845';
+const PHONE_DISPLAY = '+7 (918) 338-88-45';
+const TELEGRAM_URL = 'https://t.me/stepan222z';
+const TELEGRAM_HANDLE = '@stepan222z';
+const MAX_URL = 'https://max.ru/u/f9LHodD0cOIOBZhC8PSQYReyJLWlFg-CPF8QaSIRMRh6fj6_Qez_NrpFnjg';
+
 // ==================== HEADER ====================
 
 function Header({ onCallback }: { onCallback: () => void }) {
@@ -23,7 +31,7 @@ function Header({ onCallback }: { onCallback: () => void }) {
   ];
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-sm'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-md' : 'bg-white'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
@@ -48,8 +56,8 @@ function Header({ onCallback }: { onCallback: () => void }) {
 
           {/* Phone + CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <a href="tel:+79001234567" className="text-sm font-semibold text-slate-900 hover:text-blue-900 transition-colors">
-              +7 (900) 123-45-67
+            <a href={`tel:${PHONE}`} className="text-sm font-semibold text-slate-900 hover:text-blue-900 transition-colors">
+              {PHONE_DISPLAY}
             </a>
             <button
               onClick={onCallback}
@@ -80,7 +88,11 @@ function Header({ onCallback }: { onCallback: () => void }) {
               ))}
             </nav>
             <div className="mt-3 pt-3 border-t border-slate-100 flex flex-col gap-2">
-              <a href="tel:+79001234567" className="px-3 py-2 text-blue-900 font-semibold text-sm">+7 (900) 123-45-67</a>
+              <a href={`tel:${PHONE}`} className="px-3 py-2 text-blue-900 font-semibold text-sm">{PHONE_DISPLAY}</a>
+              <div className="flex gap-2 px-3">
+                <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className="flex-1 py-2.5 bg-sky-500 text-white text-sm font-semibold rounded-lg text-center">Telegram</a>
+                <a href={MAX_URL} target="_blank" rel="noopener noreferrer" className="flex-1 py-2.5 bg-violet-600 text-white text-sm font-semibold rounded-lg text-center">Max</a>
+              </div>
               <button onClick={() => { onCallback(); setMobileOpen(false); }} className="mx-3 py-2.5 bg-amber-500 text-white text-sm font-semibold rounded-lg">
                 Перезвоните мне
               </button>
@@ -110,7 +122,7 @@ function Hero({ onDrilling, onSurvey }: { onDrilling: () => void; onSurvey: () =
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-[1.1] mb-6">
-              Бурение скважин на воду
+              Бурение скважин<br />на воду
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-600 mb-4 max-w-xl leading-relaxed">
@@ -161,7 +173,7 @@ function Hero({ onDrilling, onSurvey }: { onDrilling: () => void; onSurvey: () =
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-8 text-center">
                 <div className="text-6xl mb-4">🔧</div>
                 <p className="text-lg font-medium opacity-80">Фото буровой установки</p>
-                <p className="text-sm opacity-50 mt-1">Будет добавлено после получения материалов</p>
+                <p className="text-sm opacity-50 mt-1">Будет заменено на реальное фото</p>
               </div>
             </div>
 
@@ -214,8 +226,12 @@ function Advantages() {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+      {/* Subtle background image */}
+      <div className="absolute inset-0 bg-drilling-equipment"></div>
+      <div className="absolute inset-0 bg-white/90"></div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Почему выбирают нас</h2>
           <p className="text-lg text-slate-600">Работаем с конца 2021 года. Нас находят по рекомендациям — и это лучшая реклама.</p>
@@ -282,7 +298,7 @@ function Services({ onDrilling, onCallback }: { onDrilling: () => void; onCallba
             <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center text-2xl mb-5">🔧</div>
             <h3 className="text-xl font-bold text-slate-900 mb-3">Ремонт и обслуживание</h3>
             <ul className="space-y-2 text-sm text-slate-600 mb-6">
-              <li className="flex items-start gap-2"><span className="text-emerald-600 mt-0.5">•</span>Диагностикаexisting скважин</li>
+              <li className="flex items-start gap-2"><span className="text-emerald-600 mt-0.5">•</span>Диагностика существующих скважин</li>
               <li className="flex items-start gap-2"><span className="text-emerald-600 mt-0.5">•</span>Замена насосного оборудования</li>
               <li className="flex items-start gap-2"><span className="text-emerald-600 mt-0.5">•</span>Промывка и восстановление дебита</li>
               <li className="flex items-start gap-2"><span className="text-emerald-600 mt-0.5">•</span>Консультации по эксплуатации</li>
@@ -352,7 +368,7 @@ function FiltersBlock({ onFilter }: { onFilter: () => void }) {
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
                 <div className="text-6xl mb-4">🏭</div>
                 <p className="text-lg font-medium text-white/80">Фото производства и фильтров</p>
-                <p className="text-sm text-white/40 mt-1">Будет добавлено после получения материалов</p>
+                <p className="text-sm text-white/40 mt-1">Будет заменено на реальное фото</p>
               </div>
             </div>
 
@@ -380,8 +396,12 @@ function Process() {
   ];
 
   return (
-    <section id="process" className="py-16 md:py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="process" className="py-16 md:py-24 bg-white relative overflow-hidden">
+      {/* Subtle background */}
+      <div className="absolute inset-0 bg-pipes-equipment"></div>
+      <div className="absolute inset-0 bg-white/92"></div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Как мы работаем</h2>
           <p className="text-lg text-slate-600">От первого звонка до воды из крана — прозрачный процесс с документами на каждом этапе</p>
@@ -405,25 +425,30 @@ function Process() {
 
 function Equipment() {
   return (
-    <section id="equipment" className="py-16 md:py-24 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="equipment" className="py-16 md:py-24 bg-slate-50 relative overflow-hidden">
+      {/* Subtle background */}
+      <div className="absolute inset-0 bg-tracked-rig"></div>
+      <div className="absolute inset-0 bg-slate-50/90"></div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Наша техника</h2>
-          <p className="text-lg text-slate-600">Две буровые установки — для разных условий. Подберём технику под ваш участок.</p>
+          <p className="text-lg text-slate-600">Собственный парк техники — две буровые установки и вспомогательные машины. Подберём технику под ваш участок.</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
           {/* Big rig */}
           <div className="bg-white rounded-2xl overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow">
             <div className="aspect-[16/10] bg-gradient-to-br from-slate-200 to-slate-300 relative">
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
                 <div className="text-5xl mb-3">🏗️</div>
                 <p className="text-slate-600 font-medium">Фото большой буровой</p>
+                <p className="text-xs text-slate-400 mt-1">большая установка процесс.jpg</p>
               </div>
             </div>
             <div className="p-6">
               <h3 className="text-xl font-bold text-slate-900 mb-2">Большая буровая установка</h3>
-              <p className="text-slate-600 text-sm mb-4">Для открытых участков и промышленного бурения. Глубокое бурение на металлических колоннах.</p>
+              <p className="text-slate-600 text-sm mb-4">Для открытых участков и промышленного бурения. Глубокое бурение на металлических колоннах. Подходит для сложных геологических условий.</p>
               <div className="flex flex-wrap gap-2">
                 <span className="px-2.5 py-1 bg-blue-50 text-blue-800 text-xs font-medium rounded-full">Глубокое бурение</span>
                 <span className="px-2.5 py-1 bg-blue-50 text-blue-800 text-xs font-medium rounded-full">Промышленные объекты</span>
@@ -438,11 +463,12 @@ function Equipment() {
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
                 <div className="text-5xl mb-3">🚜</div>
                 <p className="text-slate-600 font-medium">Фото малогабаритной буровой</p>
+                <p className="text-xs text-slate-400 mt-1">гусеничная буровая.jpg</p>
               </div>
             </div>
             <div className="p-6">
               <h3 className="text-xl font-bold text-slate-900 mb-2">Малогабаритная на гусеничном ходу</h3>
-              <p className="text-slate-600 text-sm mb-4">Компактная установка для участков с ограниченным подъездом. Не повредит ландшафт и существующие постройки.</p>
+              <p className="text-slate-600 text-sm mb-4">Компактная установка для участков с ограниченным подъездом. Не повредит ландшафт, заезд через стандартные ворота. Идеальна для обустроенных участков.</p>
               <div className="flex flex-wrap gap-2">
                 <span className="px-2.5 py-1 bg-amber-50 text-amber-800 text-xs font-medium rounded-full">Ограниченный подъезд</span>
                 <span className="px-2.5 py-1 bg-amber-50 text-amber-800 text-xs font-medium rounded-full">Гусеничный ход</span>
@@ -450,6 +476,26 @@ function Equipment() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Additional vehicles */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            { name: 'Водовоз КамАЗ 43118', file: 'Водовоз камаз 43118.jpg', emoji: '🚛' },
+            { name: 'Манипулятор КамАЗ 43118', file: 'манипулятор камаз 43118.jpg', emoji: '🏗️' },
+            { name: 'Манипулятор ГАЗ 3308', file: 'манипулятор газ 3308.jpg', emoji: '🔧' },
+            { name: 'Эвакуатор КамАЗ 4308', file: 'Эвакуатор камаз 4308.jpg', emoji: '🚚' },
+          ].map((v, i) => (
+            <div key={i} className="bg-white rounded-xl overflow-hidden border border-slate-100 hover:shadow-md transition-shadow">
+              <div className="aspect-[4/3] bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+                <span className="text-4xl">{v.emoji}</span>
+              </div>
+              <div className="p-3">
+                <p className="text-sm font-medium text-slate-900">{v.name}</p>
+                <p className="text-xs text-slate-400 mt-0.5">{v.file}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -585,8 +631,12 @@ function FAQ() {
 
 function ContactSection({ onCallback }: { onCallback: () => void }) {
   return (
-    <section id="contacts" className="py-16 md:py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contacts" className="py-16 md:py-24 bg-white relative overflow-hidden">
+      {/* Subtle background */}
+      <div className="absolute inset-0 bg-drilling-equipment"></div>
+      <div className="absolute inset-0 bg-white/92"></div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Left: info */}
           <div>
@@ -594,27 +644,27 @@ function ContactSection({ onCallback }: { onCallback: () => void }) {
             <p className="text-lg text-slate-600 mb-8">Выберите удобный способ — ответим быстро</p>
 
             <div className="space-y-4 mb-8">
-              <a href="tel:+79001234567" className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 hover:bg-blue-50 transition-colors group">
+              <a href={`tel:${PHONE}`} className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 hover:bg-blue-50 transition-colors group">
                 <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center text-xl group-hover:bg-blue-200 transition-colors">📞</div>
                 <div>
                   <div className="text-xs text-slate-500 uppercase tracking-wider">Телефон</div>
-                  <div className="font-bold text-slate-900 text-lg">+7 (900) 123-45-67</div>
+                  <div className="font-bold text-slate-900 text-lg">{PHONE_DISPLAY}</div>
                 </div>
               </a>
 
-              <a href="https://t.me/h2o_pro" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 hover:bg-blue-50 transition-colors group">
+              <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 hover:bg-sky-50 transition-colors group">
                 <div className="w-12 h-12 rounded-xl bg-sky-100 flex items-center justify-center text-xl group-hover:bg-sky-200 transition-colors">✈️</div>
                 <div>
                   <div className="text-xs text-slate-500 uppercase tracking-wider">Telegram</div>
-                  <div className="font-bold text-slate-900">@h2o_pro</div>
+                  <div className="font-bold text-slate-900">{TELEGRAM_HANDLE}</div>
                 </div>
               </a>
 
-              <a href="#" className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 hover:bg-blue-50 transition-colors group">
+              <a href={MAX_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 hover:bg-violet-50 transition-colors group">
                 <div className="w-12 h-12 rounded-xl bg-violet-100 flex items-center justify-center text-xl group-hover:bg-violet-200 transition-colors">💬</div>
                 <div>
-                  <div className="text-xs text-slate-500 uppercase tracking-wider">Max (мессенджер)</div>
-                  <div className="font-bold text-slate-900">Написать в Max</div>
+                  <div className="text-xs text-slate-500 uppercase tracking-wider">Мессенджер MAX</div>
+                  <div className="font-bold text-slate-900">Написать в MAX</div>
                 </div>
               </a>
             </div>
@@ -716,11 +766,11 @@ function Footer({ onPrivacy, onConsent }: { onPrivacy: () => void; onConsent: ()
           <div>
             <h4 className="font-semibold text-sm mb-4">Контакты</h4>
             <div className="space-y-2 text-sm text-slate-400">
-              <a href="tel:+79001234567" className="block hover:text-white transition-colors font-medium">+7 (900) 123-45-67</a>
+              <a href={`tel:${PHONE}`} className="block hover:text-white transition-colors font-medium">{PHONE_DISPLAY}</a>
               <div>Краснодарский край</div>
               <div className="flex gap-2 mt-3">
-                <a href="https://t.me/h2o_pro" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors text-xs">TG</a>
-                <a href="#" className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors text-xs">MX</a>
+                <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors text-xs">TG</a>
+                <a href={MAX_URL} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors text-xs">MX</a>
               </div>
             </div>
           </div>
@@ -739,13 +789,66 @@ function Footer({ onPrivacy, onConsent }: { onPrivacy: () => void; onConsent: ()
   );
 }
 
+// ==================== FLOATING MESSANGER BUTTONS ====================
+
+function FloatingButtons() {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
+      {expanded && (
+        <>
+          <a
+            href={TELEGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 bg-sky-500 hover:bg-sky-600 text-white px-4 py-3 rounded-full shadow-lg transition-all hover:scale-105"
+          >
+            <span className="text-sm font-medium">Telegram</span>
+            <span>✈️</span>
+          </a>
+          <a
+            href={MAX_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-4 py-3 rounded-full shadow-lg transition-all hover:scale-105"
+          >
+            <span className="text-sm font-medium">MAX</span>
+            <span>💬</span>
+          </a>
+          <a
+            href={`tel:${PHONE}`}
+            className="flex items-center gap-2 bg-blue-900 hover:bg-blue-800 text-white px-4 py-3 rounded-full shadow-lg transition-all hover:scale-105"
+          >
+            <span className="text-sm font-medium">Позвонить</span>
+            <span>📞</span>
+          </a>
+        </>
+      )}
+
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className={`w-14 h-14 rounded-full flex items-center justify-center shadow-xl transition-all hover:scale-110 ${expanded ? 'bg-slate-700 rotate-45' : 'bg-amber-500 hover:bg-amber-600'}`}
+        aria-label="Связаться с нами"
+      >
+        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          {expanded ? (
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          ) : (
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          )}
+        </svg>
+      </button>
+    </div>
+  );
+}
+
 // ==================== MAIN APP ====================
 
 export default function App() {
   const [modalType, setModalType] = useState<'callback' | 'drilling' | 'filter' | 'survey' | null>(null);
   const [legalType, setLegalType] = useState<'privacy' | 'consent' | null>(null);
 
-  // Listen for legal modal events from nested components
   useEffect(() => {
     const handler = (e: Event) => {
       const detail = (e as CustomEvent).detail;
@@ -768,6 +871,9 @@ export default function App() {
       <FAQ />
       <ContactSection onCallback={() => setModalType('callback')} />
       <Footer onPrivacy={() => setLegalType('privacy')} onConsent={() => setLegalType('consent')} />
+
+      {/* Floating messenger buttons */}
+      <FloatingButtons />
 
       {/* Modals */}
       <CallbackModal
